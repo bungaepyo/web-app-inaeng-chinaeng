@@ -1,3 +1,79 @@
+html, body, #root, .app{
+    height: 100%;
+}
+
+.header{
+    text-align: center;
+    padding-top: 5%;
+    color: #6DB4F7;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+.title{
+    text-align: center;
+    padding-bottom: 5%;
+    color: #828282;
+}
+
+.card-block{
+    display: flex;
+    flex: 1;
+    color: #828282;
+}
+
+.card-block:first-child{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-right: 5%;
+    margin-left: 15%;
+}
+
+.card-block:last-child{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-right: 15%;
+    margin-left: 5%;
+}
+
+.card{
+    width: 100%;
+    border-radius: 13px;
+    box-shadow: 0 0 10px 1px rgba(164, 164, 164, 0.62);
+    margin-bottom: 3%;
+}
+
+.card-title{
+    font-size: 15pt;
+}
+
+.card-text{
+    font-size: 15pt;
+}
+
 .row{
     padding: 10pt;
+}
+
+.send_google_button {
+    float: right;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.footer{
+    padding: 1.5%;
+    box-shadow: 0 0 5px 2px #C7C3C3;
+    position: absolute;
+    left:0;
+    bottom:0;
+    right:0;
+}
+
+.card-add-button{
+    width: 100%;
 }

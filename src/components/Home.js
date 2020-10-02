@@ -1,59 +1,99 @@
 import React from "react";
 import '../styles/Home.css';
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Divider from '@material-ui/core/Divider'
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import IconButton from '@material-ui/core/IconButton';
+import blue from "@material-ui/core/colors/blue";
 
 class Home extends React.Component{
     render(){
         return  <div className="app">
-                    <main>
                         <div className="header">
                             <h1 id="main-title">Convert and Invite!</h1>
                         </div>
 
-                        <div className="my-time-block">
-                            <div id="my-time-title">
-                                <h2>My Time</h2>
+                        <div className="card-block">
+                            <div className="card-block my-time">
+                                <div className="vertical-block">
+                                    <div className="title">
+                                        <h3>My Time</h3>
+                                    </div>
+                                    <div className="my-time-card">
+                                        <Card className="card">
+                                            <Container>
+                                                <Row>
+                                                    <Col className="my-time-time">
+                                                            <Card.Body>
+                                                                <Card.Title className="card-title">
+                                                                    Seoul, Korea KST (GMT +9)
+                                                                </Card.Title>
+                                                                <Card.Text>
+                                                                01:20 AM / PM
+                                                                </Card.Text>
+                                                            </Card.Body>
+                                                    </Col>
+                                                    <Divider orientation="vertical" flexItem />
+                                                    <Col className="my-time-date">
+                                                            <Card.Body>
+                                                                <Card.Text>Thur, May 14 2020</Card.Text>
+                                                            </Card.Body>
+                                                    </Col>
+                                                </Row>
+                                            </Container>
+                                        </Card>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="my-time-card">
-                            <Card style={{ width: '40rem' }}>
-                                <Container>
-                                    <Row>
-                                        <Col className="my-time-time">
-                                                <Card.Body>
-                                                    <Card.Title>Card Title</Card.Title>
-                                                    <Card.Text>
-                                                    Some quick example text to build on the card title and make up the bulk of
-                                                    the card's content.
-                                                    </Card.Text>
-                                                    <Card.Link href="#">Card Link</Card.Link>
-                                                    <Card.Link href="#">Another Link</Card.Link>
-                                                </Card.Body>
-                                        </Col>
-                                        <Divider orientation="vertical" flexItem />
-                                        <Col className="my-time-date">
-                                                <Card.Body>
-                                                    <Card.Title>Card Title</Card.Title>
-                                                </Card.Body>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </Card>
+
+                            <div className="card-block your-time">
+                                <div className="vertical-block">
+                                    <div className="title">
+                                            <h3>Their Time</h3>
+                                    </div>
+                                    <div className="your-time-card-container">
+                                        <div className="your-time-card">
+                                        <Card className="card">
+                                            <Container>
+                                                <Row>
+                                                    <Col className="your-time-time">
+                                                            <Card.Body>
+                                                                <Card.Title className="card-title">
+                                                                    New York, USA EDT (GMT +9)
+                                                                </Card.Title>
+                                                                <Card.Text>
+                                                                12:20 AM / PM
+                                                                </Card.Text>                                                            </Card.Body>
+                                                    </Col>
+                                                    <Divider orientation="vertical" flexItem />
+                                                    <Col className="your-time-date">
+                                                            <Card.Body>
+                                                                <Card.Text>Wed, May 13 2020</Card.Text>
+                                                            </Card.Body>
+                                                    </Col>
+                                                </Row>
+                                            </Container>
+                                        </Card>
+                                        </div>
+                                    </div>
+                                    <IconButton className="card-add-button">
+                                        <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
+                                    </IconButton>
+                                </div>
                             </div>
                         </div>
-
-                        <div className="your-time">
-                            <div id="your-time-title">
-                                <h2>Your Time</h2>
-                            </div>
-                        </div>
-
+                        
                         <div className="footer">
-
+                            <Button 
+                                className="send_google_button" 
+                                variant="send" 
+                                size="lg"
+                                style={{color:"white", background:"#6DB4F7"}}>
+                                    Send Google Calendar
+                            </Button>{' '}
                         </div>
-                    </main>
                 </div>;
     }
 }
