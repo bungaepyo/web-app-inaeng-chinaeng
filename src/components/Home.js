@@ -92,17 +92,17 @@ class Home extends React.Component{
                             </div>
                         </div>
                         
-                        <div className="footer">
-                            <ButtonToolbar className="send-button">
-                                <Button  
-                                    variant="send" 
-                                    size="lg"
-                                    onClick={()=> this.nextPath('/invite')}
-                                    style={{color:"white", background:"#6DB4F7"}}>
-                                        Send Google Calendar
-                                </Button>{' '}  
-                            </ButtonToolbar>
-                        </div>
+                            <div className="footer">
+                                <ButtonToolbar className="send-button">
+                                    <Button  
+                                        variant="send" 
+                                        size="lg"
+                                        onClick={()=> this.nextPath('/invite')}
+                                        style={{color:"white", background:"#6DB4F7"}}>
+                                            Send Google Calendar
+                                    </Button>{' '} 
+                                </ButtonToolbar>
+                            </div>
                 </div>;
     }
 }
