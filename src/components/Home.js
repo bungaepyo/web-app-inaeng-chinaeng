@@ -7,11 +7,13 @@ import Divider from '@material-ui/core/Divider'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import blue from "@material-ui/core/colors/blue";
+import mainLogo from '../images/logo.png';
 
 class Home extends React.Component{
     render(){
         return  <div className="app">
                         <div className="header">
+                            <img src={mainLogo} alt="main-logo"/>
                             <h1 id="main-title">Convert and Invite!</h1>
                         </div>
 
@@ -87,7 +89,7 @@ class Home extends React.Component{
                         
                         <div className="footer">
                             <Button 
-                                className="send_google_button" 
+                                className="send_button" 
                                 variant="send" 
                                 size="lg"
                                 style={{color:"white", background:"#6DB4F7"}}>
