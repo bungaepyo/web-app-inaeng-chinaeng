@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Home.css';
-import { Button, Col, Row } from "react-bootstrap";
+import { ButtonToolbar, Button, Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Divider from '@material-ui/core/Divider'
@@ -10,6 +10,11 @@ import blue from "@material-ui/core/colors/blue";
 import mainLogo from '../images/logo.png';
 
 class Home extends React.Component{
+    
+    nextPath(path){
+        this.props.history.push(path);
+    }
+
     render(){
         return  <div className="app">
                         <div className="header">
@@ -88,13 +93,15 @@ class Home extends React.Component{
                         </div>
                         
                         <div className="footer">
-                            <Button 
-                                className="send_button" 
-                                variant="send" 
-                                size="lg"
-                                style={{color:"white", background:"#6DB4F7"}}>
-                                    Send Google Calendar
-                            </Button>{' '}
+                            <ButtonToolbar className="send-button">
+                                <Button  
+                                    variant="send" 
+                                    size="lg"
+                                    onClick={()=> this.nextPath('/invite')}
+                                    style={{color:"white", background:"#6DB4F7"}}>
+                                        Send Google Calendar
+                                </Button>{' '}  
+                            </ButtonToolbar>
                         </div>
                 </div>;
     }

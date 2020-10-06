@@ -1,10 +1,18 @@
 import React from "react";
 import '../styles/Invite.css';
-import { Button, Form } from "react-bootstrap";
+import { ButtonToolbar, Button, Form } from "react-bootstrap";
 import inviteImage from '../images/invite.png'
+import { Confirm } from "./Confirm";
 
 class Invite extends React.Component{
+
+    state = {
+        sendModalShow: false
+    }
+
     render(){
+        let sendModalClose = () => this.setState({sendModalShow: false});
+
         return  <div className="app">
                         <div className="header">
                             <h1 id="main-title">Set up a Google Calendar</h1>
@@ -36,13 +44,20 @@ class Invite extends React.Component{
                         </div>
                         
                         <div className="footer">
-                            <Button 
-                                className="send_button" 
-                                variant="send" 
-                                size="lg"
-                                style={{color:"white", background:"#6DB4F7"}}>
-                                    Send Now
-                            </Button>{' '}
+                            <ButtonToolbar className="send-button" >
+                                <Button
+                                    variant="send" 
+                                    size="lg"
+                                    onClick={()=>this.setState({sendModalShow:true})}
+                                    style={{color:"white", background:"#6DB4F7"}}>
+                                        Send Now
+                                </Button>{' '}
+
+                                <Confirm
+                                    show={this.state.sendModalShow}
+                                    onHide={sendModalClose}
+                                />
+                            </ButtonToolbar>
                         </div>
                 </div>;
     }
