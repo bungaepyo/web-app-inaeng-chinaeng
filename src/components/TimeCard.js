@@ -49,3 +49,5 @@ class TimeCard extends React.Component{
     }
 
 }
+
+export default TimeCard;

@@ -16,6 +16,24 @@ class Home extends React.Component{
         this.props.history.push(path);
     }
 
+    state = {
+        cardsCount: 0
+    };
+
+    addHandler = () => {
+        this.setState(prevState => {
+            return {cardsCount: prevState.cardsCount+1};
+        })
+    };
+
+    getCards = () => {
+        let cards =[];
+        for(let i=0; i<this.state.cardsCount; i++){
+            cards.push(TimeCard)
+        }
+        return cards;
+    }
+
     render(){
         return  <div className="app">
                         <div className="header">
@@ -65,9 +83,12 @@ class Home extends React.Component{
                                         <div className="your-time-card">
                                         <Card className="card">
                                             <Container className="card-container">
-                                                <IconButton className="card-add-button">
+                                                <IconButton 
+                                                    className="card-add-button"
+                                                    onClick={this.addHandler}>
                                                     <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
                                                 </IconButton>
+                                                {this.getCards()}
                                             </Container>
                                         </Card>
                                         </div>
