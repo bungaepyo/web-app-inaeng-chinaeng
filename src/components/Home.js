@@ -2,6 +2,7 @@ import React from "react";
 import '../styles/Home.css';
 import { ButtonToolbar, Button, Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import TimeCard from "../components/TimeCard";
 import Container from "react-bootstrap/Container";
 import Divider from '@material-ui/core/Divider'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -30,7 +31,7 @@ class Home extends React.Component{
                                     </div>
                                     <div className="my-time-card">
                                         <Card className="card">
-                                            <Container>
+                                            <Container className="card-container">
                                                 <Row>
                                                     <Col className="my-time-time">
                                                             <Card.Body>
@@ -63,31 +64,17 @@ class Home extends React.Component{
                                     <div className="your-time-card-container">
                                         <div className="your-time-card">
                                         <Card className="card">
-                                            <Container>
-                                                <Row>
-                                                    <Col className="your-time-time">
-                                                            <Card.Body>
-                                                                <Card.Title className="card-title">
-                                                                    New York, USA EDT (GMT +9)
-                                                                </Card.Title>
-                                                                <Card.Text>
-                                                                12:20 AM / PM
-                                                                </Card.Text>                                                            </Card.Body>
-                                                    </Col>
-                                                    <Divider orientation="vertical" flexItem />
-                                                    <Col className="your-time-date">
-                                                            <Card.Body>
-                                                                <Card.Text>Wed, May 13 2020</Card.Text>
-                                                            </Card.Body>
-                                                    </Col>
-                                                </Row>
+                                            <Container className="card-container">
+                                                <IconButton className="card-add-button">
+                                                    <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
+                                                </IconButton>
                                             </Container>
                                         </Card>
                                         </div>
                                     </div>
-                                    <IconButton className="card-add-button">
+                                    {/* <IconButton className="card-add-button">
                                         <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
-                                    </IconButton>
+                                    </IconButton> */}
                                 </div>
                             </div>
                         </div>

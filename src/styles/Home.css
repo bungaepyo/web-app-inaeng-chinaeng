@@ -43,6 +43,15 @@ body{
     margin-left: 5%;
 }
 
+/* Should fix to adapt to different screen size */
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 150px;
+}
+
 .card{
     width: 100%;
     border-radius: 13px;
@@ -75,8 +84,4 @@ body{
     left:0;
     bottom:0;
     right:0;
-}
-
-.card-add-button{
-    width: 100%;
 }
