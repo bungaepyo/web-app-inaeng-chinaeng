@@ -4,13 +4,76 @@ import { ButtonToolbar, Button, Form } from "react-bootstrap";
 import inviteImage from '../images/invite.png'
 import { Confirm } from "./Confirm";
 
+const CLIENT_ID = "436917821635-fsq6p4hosj7f4nof79tlphdec5dqprvb.apps.googleusercontent.com";
+const API_KEY = "AIzaSyAhsgjdfoPExLBDEQHdr0aG9FK3B_Y_EwM";
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+var gapi = window.gapi;
+
 class Invite extends React.Component{
 
     state = {
         sendModalShow: false
     }
+  
+    handleClick = () => {
+      gapi.load('client:auth2', () => {
+        console.log('loaded client')
+  
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES,
+        })
+  
+        gapi.client.load('calendar', 'v3', () => console.log('bam!'))
+  
+        gapi.auth2.getAuthInstance().signIn()
+        .then(() => {
+          
+          var event = {
+            'summary': 'Test Event',
+            'location': '800 Howard St., San Francisco, CA 94103',
+            'description': 'Test',
+            'start': {
+              'dateTime': '2020-10-12T09:00:00-07:00',
+              'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+              'dateTime': '2020-10-12T17:00:00-07:00',
+              'timeZone': 'America/Los_Angeles'
+            },
+            'attendees': [
+              {'email': 'jk2299@cornell.edu'},
+              {'email': 'tl422@cornell.edu'}
+            ],
+            'reminders': {
+              'useDefault': false,
+              'overrides': [
+                {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 10}
+              ]
+            }
+          }
+  
+          var request = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event,
+            'sendUpdates':'all',
+          })
+  
+          request.execute(event => {
+            console.log(event)
+            window.open(event.htmlLink)
+            this.setState({sendModalShow: true})
+          })
+        })
+      })
+    }
 
     render(){
+
         let sendModalClose = () => this.setState({sendModalShow: false});
 
         return  <div className="app">
@@ -48,7 +111,8 @@ class Invite extends React.Component{
                                 <Button
                                     variant="send" 
                                     size="lg"
-                                    onClick={()=>this.setState({sendModalShow:true})}
+                                    onClick={()=> this.handleClick()
+                                    }
                                     style={{color:"white", background:"#6DB4F7"}}>
                                         Send Now
                                 </Button>{' '}

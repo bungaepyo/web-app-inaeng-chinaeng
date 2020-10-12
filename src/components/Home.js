@@ -56,9 +56,7 @@ class Home extends React.Component{
                                                                 <Card.Title className="card-title">
                                                                     Seoul, Korea KST (GMT +9)
                                                                 </Card.Title>
-                                                                <Card.Text>
-                                                                01:20 AM / PM
-                                                                </Card.Text>
+                                                                <Card.Text>01:20 AM / PM</Card.Text>
                                                             </Card.Body>
                                                     </Col>
                                                     <Divider orientation="vertical" flexItem />
