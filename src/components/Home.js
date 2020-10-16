@@ -18,7 +18,15 @@ import MomentUtils from '@date-io/moment';
 const timeZones = IanaTimeZones;
 
 class Home extends React.Component{
+
+    state = {
+        selectedTimeZone: null,
+    }
     
+    setSelectedTimeZone(timeZone){
+        this.setState({selectedTimeZone: timeZone})
+    }
+
     nextPath(path){
         this.props.history.push(path);
     }
@@ -43,17 +51,18 @@ class Home extends React.Component{
                                                             <Card.Body>
                                                                 <Dropdown className="my-time-dropdown">
                                                                     <Dropdown.Toggle as={CustomToggle} className="my-time-dropdown-toggle">
-                                                                    Time Zone
+                                                                    {this.state.selectedTimeZone?this.state.selectedTimeZone:"Time Zone"}
                                                                     </Dropdown.Toggle>
 
-                                                                    <Dropdown.Menu as={CustomMenu} className="my-time-dropdown-menu">
-                                                                        {timeZones.map(timeZone =>
-                                                                            <Dropdown.Item value={timeZone}>{timeZone}</Dropdown.Item>
+                                                                    <Dropdown.Menu as={CustomMenu}
+                                                                                   className="my-time-dropdown-menu">
+                                                                        {timeZones.map((timeZone,i) =>
+                                                                            <Dropdown.Item onSelect={()=>this.setSelectedTimeZone(timeZone)} key={i}>{timeZone}</Dropdown.Item>
                                                                         )}
                                                                     </Dropdown.Menu>
                                                                 </Dropdown>
                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                    <InlineTimePicker className="timePicker"/>
+                                                                    <InlineTimePicker/>
                                                                 </MuiPickersUtilsProvider>
                                                             </Card.Body>
                                                     </Col>
