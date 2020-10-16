@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import { FormControl } from "react-bootstrap";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
+      style={{color : "#6DB4F7", fontSize:"18px"}}
       href=" "
       ref={ref}
       onClick={(e) => {
@@ -11,7 +13,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       }}
     >
       {children}
-      &#x25bc;
+      <ExpandMoreIcon/>
     </a>
   ));
 
@@ -29,7 +31,7 @@ const CustomMenu = React.forwardRef(
           <FormControl
             autoFocus
             className="mx-3 my-2 w-auto"
-            placeholder="Type to filter..."
+            placeholder="Type to filter"
             onChange={(e) => setValue(e.target.value)}
             value={value}
           />

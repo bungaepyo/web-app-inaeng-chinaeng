@@ -48,7 +48,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 550px;
+    width: 500px;
     height: 120px;
 }
 
@@ -80,6 +80,11 @@ body{
     left:0;
     bottom:0;
     right:0;
+}
+
+.card-body{
+    align-items: center;
+    justify-content: center;
 }
 
 .my-time-dropdown{

@@ -12,26 +12,26 @@ const useStyles = makeStyles({
   },
 
   selectDate: {
-    fontSize: "17px",
+    fontSize: "26px",
     color: "#828282",
   },
 
   selectTime: {
-    fontSize: "25px",
+    fontSize: "26px",
     color: "#6DB4F7",
-    '&:hover': {
-        cursor: 'pointer'
-     }
   },
 
   amPm: {
-    fontSize: "25px",
-    color: "#828282",
+    fontSize: "26px",
+    color: "#6DB4F7",
     marginLeft: "5px",
   },
 
   timeTypography: {
     display: "flex",
+    '&:hover': {
+        cursor: 'pointer'
+     }
   },
 });
 
@@ -48,10 +48,10 @@ function InlineTimePicker() {
 
   return (
     <div className={classes.container}>
-        <div className={classes.timeTypography}>
+        <div className={classes.timeTypography}
+             onClick={() => setIsOpen(true)}>
             <div>
-                <Typography className={classes.selectTime}
-                            onClick={() => setIsOpen(true)}>
+                <Typography className={classes.selectTime}>
                         {hour12 + ":" + minute}
                 </Typography>
             </div>

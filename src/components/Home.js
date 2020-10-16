@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/Home.css';
 import { ButtonToolbar, Button, Col, Dropdown } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import TimeCard from "../components/TimeCard";
+// import TimeCard from "../components/TimeCard";
 import Container from "react-bootstrap/Container";
 import Divider from '@material-ui/core/Divider'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -21,24 +21,6 @@ class Home extends React.Component{
     
     nextPath(path){
         this.props.history.push(path);
-    }
-
-    state = {
-        cardsCount: 0,
-    };
-
-    addHandler = () => {
-        this.setState(prevState => {
-            return {cardsCount: prevState.cardsCount+1};
-        })
-    };
-
-    getCards = () => {
-        let cards =[];
-        for(let i=0; i<this.state.cardsCount; i++){
-            cards.push(TimeCard)
-        }
-        return cards;
     }
 
     render(){
@@ -103,7 +85,6 @@ class Home extends React.Component{
                                                     onClick={this.addHandler}>
                                                     <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
                                                 </IconButton>
-                                                {this.getCards()}
                                             </Container>
                                         </Card>
                                         </div>
