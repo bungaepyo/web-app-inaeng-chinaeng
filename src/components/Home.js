@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Home.css';
-import { ButtonToolbar, Button, Col, Row, Dropdown } from "react-bootstrap";
+import { ButtonToolbar, Button, Col, Dropdown } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import TimeCard from "../components/TimeCard";
 import Container from "react-bootstrap/Container";
@@ -25,12 +25,7 @@ class Home extends React.Component{
 
     state = {
         cardsCount: 0,
-        selectedDate: new Date("2014-08-18T21:11:54")
     };
-
-    // handleDateChange = (Date) => {
-    //     selectedDate.setState(Date)
-    // }
 
     addHandler = () => {
         this.setState(prevState => {
@@ -62,7 +57,6 @@ class Home extends React.Component{
                                     <div className="my-time-card">
                                         <Card className="card">
                                             <Container className="card-container">
-                                                <Row>
                                                     <Col className="my-time-time">
                                                             <Card.Body>
                                                                 <Dropdown className="my-time-dropdown">
@@ -77,19 +71,18 @@ class Home extends React.Component{
                                                                     </Dropdown.Menu>
                                                                 </Dropdown>
                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                    <InlineTimePicker />
-                                                                </MuiPickersUtilsProvider>,
+                                                                    <InlineTimePicker className="timePicker"/>
+                                                                </MuiPickersUtilsProvider>
                                                             </Card.Body>
                                                     </Col>
-                                                    <Divider orientation="vertical" flexItem />
+                                                    <Divider orientation="vertical" flexItem className="divider"/>
                                                     <Col className="my-time-date">
                                                             <Card.Body>
                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                    <InlineDatePicker />
-                                                                </MuiPickersUtilsProvider>,
+                                                                    <InlineDatePicker/>
+                                                                </MuiPickersUtilsProvider>
                                                             </Card.Body>
                                                     </Col>
-                                                </Row>
                                             </Container>
                                         </Card>
                                     </div>

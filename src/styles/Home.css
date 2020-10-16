@@ -48,8 +48,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 150px;
+    width: 550px;
+    height: 120px;
 }
 
 .card{
@@ -67,10 +67,6 @@ body{
     font-size: 15pt;
 }
 
-.row{
-    padding: 10pt;
-}
-
 .send-button {
     float: right;
     padding-left: 3%;
@@ -84,6 +80,10 @@ body{
     left:0;
     bottom:0;
     right:0;
+}
+
+.my-time-dropdown{
+    margin-bottom: 6%;
 }
 
 .my-time-dropdown-menu{
