@@ -85,3 +85,8 @@ body{
     bottom:0;
     right:0;
 }
+
+.my-time-dropdown-menu{
+    max-height: 400px;
+    overflow-y: scroll;
+}

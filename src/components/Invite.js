@@ -45,8 +45,7 @@ class Invite extends React.Component{
               'timeZone': 'America/Los_Angeles'
             },
             'attendees': [
-              {'email': 'jk2299@cornell.edu'},
-              {'email': 'tl422@cornell.edu'}
+              {'email': 'jk2299@cornell.edu'}
             ],
             'reminders': {
               'useDefault': false,

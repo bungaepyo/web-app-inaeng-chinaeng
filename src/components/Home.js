@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import '../styles/Home.css';
-import { ButtonToolbar, Button, Col, Row } from "react-bootstrap";
+import { ButtonToolbar, Button, Col, Row, Dropdown, FormControl } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import TimeCard from "../components/TimeCard";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,52 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import blue from "@material-ui/core/colors/blue";
 import mainLogo from '../images/logo.png';
+import IanaTimeZones from '../components/TimeZone.js';
+
+const timeZones = IanaTimeZones;
+
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {children}
+      &#x25bc;
+    </a>
+  ));
+
+const CustomMenu = React.forwardRef(
+    ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+      const [value, setValue] = useState('');
+  
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+          <FormControl
+            autoFocus
+            className="mx-3 my-2 w-auto"
+            placeholder="Type to filter..."
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+          />
+          <ul className="list-unstyled">
+            {React.Children.toArray(children).filter(
+              (child) =>
+                !value || child.props.children.toLowerCase().includes(value),
+            )}
+          </ul>
+        </div>
+      );
+    },
+);
 
 class Home extends React.Component{
     
@@ -53,9 +99,17 @@ class Home extends React.Component{
                                                 <Row>
                                                     <Col className="my-time-time">
                                                             <Card.Body>
-                                                                <Card.Title className="card-title">
-                                                                    Seoul, Korea KST (GMT +9)
-                                                                </Card.Title>
+                                                                <Dropdown className="my-time-dropdown">
+                                                                    <Dropdown.Toggle as={CustomToggle} className="my-time-dropdown-toggle">
+                                                                    Time Zone
+                                                                    </Dropdown.Toggle>
+
+                                                                    <Dropdown.Menu as={CustomMenu} className="my-time-dropdown-menu">
+                                                                        {timeZones.map(timeZone =>
+                                                                            <Dropdown.Item value={timeZone}>{timeZone}</Dropdown.Item>
+                                                                        )}
+                                                                    </Dropdown.Menu>
+                                                                </Dropdown>
                                                                 <Card.Text>01:20 AM / PM</Card.Text>
                                                             </Card.Body>
                                                     </Col>
