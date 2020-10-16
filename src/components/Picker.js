@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   selectTime: {
     fontSize: "25px",
     color: "#6DB4F7",
+    '&:hover': {
+        cursor: 'pointer'
+     }
   },
 
   amPm: {
