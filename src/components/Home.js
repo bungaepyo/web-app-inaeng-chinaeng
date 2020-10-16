@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import '../styles/Home.css';
-import { ButtonToolbar, Button, Col, Row, Dropdown, FormControl } from "react-bootstrap";
+import { ButtonToolbar, Button, Col, Row, Dropdown } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import TimeCard from "../components/TimeCard";
 import Container from "react-bootstrap/Container";
@@ -10,51 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import blue from "@material-ui/core/colors/blue";
 import mainLogo from '../images/logo.png';
 import IanaTimeZones from '../components/TimeZone.js';
+import {CustomToggle, CustomMenu} from '../components/Dropdown'
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import {InlineTimePicker, InlineDatePicker} from '../components/Picker.js'
+import MomentUtils from '@date-io/moment';
 
 const timeZones = IanaTimeZones;
-
-const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <a
-      href=""
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {children}
-      &#x25bc;
-    </a>
-  ));
-
-const CustomMenu = React.forwardRef(
-    ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-      const [value, setValue] = useState('');
-  
-      return (
-        <div
-          ref={ref}
-          style={style}
-          className={className}
-          aria-labelledby={labeledBy}
-        >
-          <FormControl
-            autoFocus
-            className="mx-3 my-2 w-auto"
-            placeholder="Type to filter..."
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-          />
-          <ul className="list-unstyled">
-            {React.Children.toArray(children).filter(
-              (child) =>
-                !value || child.props.children.toLowerCase().includes(value),
-            )}
-          </ul>
-        </div>
-      );
-    },
-);
 
 class Home extends React.Component{
     
@@ -63,8 +24,13 @@ class Home extends React.Component{
     }
 
     state = {
-        cardsCount: 0
+        cardsCount: 0,
+        selectedDate: new Date("2014-08-18T21:11:54")
     };
+
+    // handleDateChange = (Date) => {
+    //     selectedDate.setState(Date)
+    // }
 
     addHandler = () => {
         this.setState(prevState => {
@@ -110,13 +76,17 @@ class Home extends React.Component{
                                                                         )}
                                                                     </Dropdown.Menu>
                                                                 </Dropdown>
-                                                                <Card.Text>01:20 AM / PM</Card.Text>
+                                                                <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                                    <InlineTimePicker />
+                                                                </MuiPickersUtilsProvider>,
                                                             </Card.Body>
                                                     </Col>
                                                     <Divider orientation="vertical" flexItem />
                                                     <Col className="my-time-date">
                                                             <Card.Body>
-                                                                <Card.Text>Thur, May 14 2020</Card.Text>
+                                                                <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                                    <InlineDatePicker />
+                                                                </MuiPickersUtilsProvider>,
                                                             </Card.Body>
                                                     </Col>
                                                 </Row>
