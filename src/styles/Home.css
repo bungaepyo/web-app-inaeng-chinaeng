@@ -48,14 +48,14 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 540px;
     height: 120px;
 }
 
 .card{
     width: 100%;
     border-radius: 13px;
-    box-shadow: 0 0 10px 1px rgba(164, 164, 164, 0.62);
+    box-shadow: 0 0 5px 1px rgba(164, 164, 164, 0.62);
     margin-bottom: 3%;
 }
 
@@ -87,6 +87,23 @@ body{
     justify-content: center;
 }
 
+.my-time-card-body-2{
+    padding: 0px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.divider{
+    border-left: 1px solid #BDBDBD;
+    height: 90px;
+    position: absolute;
+    top: 1;
+}
+
+.my-time-date{
+    text-align: center;
+}
+
 .my-time-dropdown{
     margin-bottom: 6%;
 }
@@ -94,4 +111,16 @@ body{
 .my-time-dropdown-menu{
     max-height: 400px;
     overflow-y: scroll;
+}
+
+.reset-button{
+    display: flex;
+    margin-top: 5%;
+    color: #6DB4F7;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset-button h5:hover {
+    cursor: pointer;
 }

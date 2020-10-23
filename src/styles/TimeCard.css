@@ -1,0 +1,62 @@
+/* Should fix to adapt to different screen size */
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 540px;
+    height: 120px;
+}
+
+.card{
+    width: 100%;
+    border-radius: 13px;
+    box-shadow: 0 0 5px 1px rgba(164, 164, 164, 0.62);
+    margin-bottom: 3%;
+}
+
+.card-title{
+    font-size: 15pt;
+}
+
+.card-text{
+    font-size: 15pt;
+}
+
+.card-body{
+    align-items: center;
+    justify-content: center;
+}
+
+.your-time-card-body-2{
+    padding: 0px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+}
+
+.divider{
+    border-left: 1px solid #BDBDBD;
+    height: 90px;
+    position: absolute;
+    top: 1;
+}
+
+.your-time-date{
+    text-align: center;
+}
+
+.your-time-dropdown{
+    margin-bottom: 6%;
+}
+
+.your-time-dropdown-menu{
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.card-add-button{
+    display: flex;
+    margin-top: 5%;
+    color: #6DB4F7;
+    align-items: center;
+    justify-content: center;
+}

@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 
   selectDate: {
-    fontSize: "26px",
+    fontSize: "20px",
     color: "#828282",
   },
 
@@ -29,14 +29,16 @@ const useStyles = makeStyles({
 
   timeTypography: {
     display: "flex",
+    width: "fit-content",
     '&:hover': {
         cursor: 'pointer'
      }
   },
 });
 
-function InlineTimePicker() {
-  const [selectedTime, handleTimeChange] = useState(new Date());
+function InlineTimePicker(props) {
+
+  const [selectedTime, handleTimeChange] = useState(props.date);
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,8 +78,8 @@ function InlineTimePicker() {
   );
 }
 
-function InlineDatePicker() {
-    const [selectedDate, handleDateChange] = useState(new Date());
+function InlineDatePicker(props) {
+    const [selectedDate, handleDateChange] = useState(props.date);
     const classes = useStyles();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -94,7 +96,7 @@ function InlineDatePicker() {
     return (
       <div className={classes.container}>
         <Typography className={classes.selectDate}>
-                {weekday + ", " + month + " " + day + ", " + year}
+                {weekday + ", " + month + " " + day + " " + year}
                 <IconButton 
                     onClick={() => setIsOpen(true)}>
                     <CalendarTodayIcon fontSize="small" style={{ color: blue[300] }}/>

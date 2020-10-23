@@ -1,26 +1,30 @@
 import React from "react";
 import '../styles/Home.css';
-import { ButtonToolbar, Button, Col, Dropdown } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
-// import TimeCard from "../components/TimeCard";
-import Container from "react-bootstrap/Container";
-import Divider from '@material-ui/core/Divider'
+import { ButtonToolbar, Button, Col, Dropdown, Card, Container } from "react-bootstrap";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import blue from "@material-ui/core/colors/blue";
 import mainLogo from '../images/logo.png';
-import IanaTimeZones from '../components/TimeZone.js';
+import IanaTimeZones from '../components/TimeZone';
 import {CustomToggle, CustomMenu} from '../components/Dropdown'
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import {InlineTimePicker, InlineDatePicker} from '../components/Picker.js'
+import {InlineTimePicker, InlineDatePicker} from '../components/Picker'
 import MomentUtils from '@date-io/moment';
+import TimeCardList from './TimeCardList'
 
 const timeZones = IanaTimeZones;
 
 class Home extends React.Component{
 
+    componentDidMount(){
+    }
+
     state = {
         selectedTimeZone: null,
+    }
+
+    resetSelected(){
+        this.setState({selectedTimeZone: null})
     }
     
     setSelectedTimeZone(timeZone){
@@ -29,6 +33,11 @@ class Home extends React.Component{
 
     nextPath(path){
         this.props.history.push(path);
+    }
+
+    addCard(e){
+        e.preventDefault();
+
     }
 
     render(){
@@ -48,10 +57,10 @@ class Home extends React.Component{
                                         <Card className="card">
                                             <Container className="card-container">
                                                     <Col className="my-time-time">
-                                                            <Card.Body>
+                                                            <Card.Body className="my-time-card-body-1">
                                                                 <Dropdown className="my-time-dropdown">
                                                                     <Dropdown.Toggle as={CustomToggle} className="my-time-dropdown-toggle">
-                                                                    {this.state.selectedTimeZone?this.state.selectedTimeZone:"Time Zone"}
+                                                                    {this.state.selectedTimeZone!=null ?this.state.selectedTimeZone:"Time Zone"}
                                                                     </Dropdown.Toggle>
 
                                                                     <Dropdown.Menu as={CustomMenu}
@@ -62,20 +71,23 @@ class Home extends React.Component{
                                                                     </Dropdown.Menu>
                                                                 </Dropdown>
                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                    <InlineTimePicker/>
+                                                                    <InlineTimePicker date={new Date()}/>
                                                                 </MuiPickersUtilsProvider>
                                                             </Card.Body>
                                                     </Col>
-                                                    <Divider orientation="vertical" flexItem className="divider"/>
+                                                    <div className="divider"></div>
                                                     <Col className="my-time-date">
-                                                            <Card.Body>
+                                                            <Card.Body className="my-time-card-body-2">
                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                    <InlineDatePicker/>
+                                                                    <InlineDatePicker date={new Date()}/>
                                                                 </MuiPickersUtilsProvider>
                                                             </Card.Body>
                                                     </Col>
                                             </Container>
                                         </Card>
+                                    </div>
+                                    <div className="reset-button">
+                                        <h5 onClick={this.resetSelected.bind(this)}>Reset</h5>
                                     </div>
                                 </div>
                             </div>
@@ -91,31 +103,29 @@ class Home extends React.Component{
                                             <Container className="card-container">
                                                 <IconButton 
                                                     className="card-add-button"
-                                                    onClick={this.addHandler}>
+                                                    onClick={this.addCard}>
                                                     <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
                                                 </IconButton>
                                             </Container>
                                         </Card>
+                                        <TimeCardList></TimeCardList>
                                         </div>
                                     </div>
-                                    {/* <IconButton className="card-add-button">
-                                        <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
-                                    </IconButton> */}
                                 </div>
                             </div>
                         </div>
                         
-                            <div className="footer">
-                                <ButtonToolbar className="send-button">
-                                    <Button  
-                                        variant="send" 
-                                        size="lg"
-                                        onClick={()=> this.nextPath('/invite')}
-                                        style={{color:"white", background:"#6DB4F7"}}>
-                                            Send Google Calendar
-                                    </Button>{' '} 
-                                </ButtonToolbar>
-                            </div>
+                        <div className="footer">
+                            <ButtonToolbar className="send-button">
+                                <Button  
+                                    variant="send" 
+                                    size="lg"
+                                    onClick={()=> this.nextPath('/invite')}
+                                    style={{color:"white", background:"#6DB4F7"}}>
+                                        Send Google Calendar
+                                </Button>{' '} 
+                            </ButtonToolbar>
+                        </div>
                 </div>;
     }
 }
