@@ -41,6 +41,11 @@ body{
 .form-input{
     background-color: #F0F0F0;
     margin-bottom: 5%;
+    resize: none;
+}
+
+.form-input::placeholder{
+    color: #BDBDBD;
 }
 
 .title{
