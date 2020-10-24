@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import '../styles/Home.css';
 import { ButtonToolbar, Button, Col, Dropdown, Card, Container } from "react-bootstrap";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -21,6 +21,12 @@ class Home extends React.Component{
 
     state = {
         selectedTimeZone: null,
+        yourTimeCard: false,
+        yourTimeCardNumber: 0,
+        cards:[],
+        currentCard:{
+            card:0
+        },
     }
 
     resetSelected(){
@@ -35,9 +41,31 @@ class Home extends React.Component{
         this.props.history.push(path);
     }
 
-    addCard(e){
-        e.preventDefault();
+    handleNewCard(){
+        this.setState({yourTimeCard: true})
+    }
 
+    handleAddCard(){
+        this.setState({
+            yourTimeCardNumber: this.state.yourTimeCardNumber+1,
+            currentCard:{
+                card:this.state.yourTimeCardNumber
+            }
+        })
+        this.addCards()
+    }
+
+    addCards(){
+        const newCard = this.state.currentCard;
+        if(newCard.card !== 0){
+            const newCards = [...this.state.cards, newCard];
+            this.setState({
+                cards: newCards,
+                currentCard:{
+                    card:0
+                }
+            })
+        }
     }
 
     render(){
@@ -94,21 +122,33 @@ class Home extends React.Component{
 
                             <div className="card-block your-time">
                                 <div className="vertical-block">
-                                    <div className="title">
-                                            <h3>Their Time</h3>
-                                    </div>
-                                    <div className="your-time-card-container">
-                                        <div className="your-time-card">
-                                        <Card className="card">
-                                            <Container className="card-container">
-                                                <IconButton 
-                                                    className="card-add-button"
-                                                    onClick={this.addCard}>
-                                                    <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
-                                                </IconButton>
-                                            </Container>
-                                        </Card>
-                                        <TimeCardList></TimeCardList>
+                                    <div className="button-block">
+                                        <div className="title">
+                                                <h3>Their Time</h3>
+                                        </div>
+                                        <div className="your-time-card-container">
+                                            <div className="your-time-card">
+                                            {this.state.yourTimeCard ? (
+                                                <Fragment>
+                                                    <TimeCardList cards={this.state.cards}></TimeCardList>
+                                                    <IconButton 
+                                                        className="card-add-button"
+                                                        onClick={this.handleAddCard.bind(this)}>
+                                                        <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
+                                                    </IconButton>
+                                                </Fragment>
+                                            ) : (
+                                                <Card className="card">
+                                                    <Container className="card-container">
+                                                        <IconButton 
+                                                            className="card-new-button"
+                                                            onClick={this.handleNewCard.bind(this)}>
+                                                            <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
+                                                        </IconButton>
+                                                    </Container>
+                                                </Card>
+                                            )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

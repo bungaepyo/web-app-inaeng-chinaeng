@@ -67,6 +67,12 @@ body{
     font-size: 15pt;
 }
 
+.card-add-button{
+    margin: 0;
+    position: relative;
+    left: 45%;
+}
+
 .send-button {
     float: right;
     padding-left: 3%;
