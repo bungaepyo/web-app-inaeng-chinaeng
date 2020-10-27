@@ -10,23 +10,20 @@ import {CustomToggle, CustomMenu} from '../components/Dropdown'
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import {InlineTimePicker, InlineDatePicker} from '../components/Picker'
 import MomentUtils from '@date-io/moment';
-import TimeCardList from './TimeCardList'
+import TimeCard from "./TimeCard";
+import { Virtuoso } from 'react-virtuoso';
 
 const timeZones = IanaTimeZones;
 
 class Home extends React.Component{
 
-    componentDidMount(){
-    }
-
     state = {
         selectedTimeZone: null,
-        yourTimeCard: false,
-        yourTimeCardNumber: 0,
-        cards:[],
-        currentCard:{
-            card:0
-        },
+        isTimeCard: false,
+        change : [],
+    }
+
+    componentDidMount(){
     }
 
     resetSelected(){
@@ -42,30 +39,19 @@ class Home extends React.Component{
     }
 
     handleNewCard(){
-        this.setState({yourTimeCard: true})
-    }
-
-    handleAddCard(){
         this.setState({
-            yourTimeCardNumber: this.state.yourTimeCardNumber+1,
-            currentCard:{
-                card:this.state.yourTimeCardNumber
-            }
+            isTimeCard: true,
         })
-        this.addCards()
     }
 
-    addCards(){
-        const newCard = this.state.currentCard;
-        if(newCard.card !== 0){
-            const newCards = [...this.state.cards, newCard];
-            this.setState({
-                cards: newCards,
-                currentCard:{
-                    card:0
-                }
-            })
-        }
+    handleAddCard = (element) =>{
+
+        let components = this.state.change;
+        element = <TimeCard></TimeCard>
+        components.push(element);
+        this.setState({
+            change: components,
+        })
     }
 
     render(){
@@ -88,7 +74,7 @@ class Home extends React.Component{
                                                             <Card.Body className="my-time-card-body-1">
                                                                 <Dropdown className="my-time-dropdown">
                                                                     <Dropdown.Toggle as={CustomToggle} className="my-time-dropdown-toggle">
-                                                                    {this.state.selectedTimeZone!=null ?this.state.selectedTimeZone:"Time Zone"}
+                                                                    {this.state.selectedTimeZone!=null ? this.state.selectedTimeZone : "Time Zone"}
                                                                     </Dropdown.Toggle>
 
                                                                     <Dropdown.Menu as={CustomMenu}
@@ -128,9 +114,10 @@ class Home extends React.Component{
                                         </div>
                                         <div className="your-time-card-container">
                                             <div className="your-time-card">
-                                            {this.state.yourTimeCard ? (
+                                            {this.state.isTimeCard ? (
                                                 <Fragment>
-                                                    <TimeCardList cards={this.state.cards}></TimeCardList>
+                                                    <TimeCard></TimeCard>
+                                                    {this.state.change.map(comp => (comp))}
                                                     <IconButton 
                                                         className="card-add-button"
                                                         onClick={this.handleAddCard.bind(this)}>
@@ -160,7 +147,7 @@ class Home extends React.Component{
                                 <Button  
                                     variant="send" 
                                     size="lg"
-                                    onClick={()=> this.nextPath('/invite')}
+                                    onClick={()=> this.nextPath('/load')}
                                     style={{color:"white", background:"#6DB4F7"}}>
                                         Send Google Calendar
                                 </Button>{' '} 

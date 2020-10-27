@@ -15,7 +15,7 @@ class Invite extends React.Component{
     state = {
         sendModalShow: false
     }
-  
+
     handleClick = () => {
       gapi.load('client:auth2', () => {
         console.log('loaded client')
@@ -64,7 +64,6 @@ class Invite extends React.Component{
   
           request.execute(event => {
             console.log(event)
-            window.open(event.htmlLink)
             this.setState({sendModalShow: true})
           })
         })
