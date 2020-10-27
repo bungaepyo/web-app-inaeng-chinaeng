@@ -21,6 +21,7 @@ class Home extends React.Component{
         selectedTimeZone: null,
         isTimeCard: false,
         change : [],
+        addButtonColor : blue[300],
     }
 
     componentDidMount(){
@@ -47,11 +48,18 @@ class Home extends React.Component{
     handleAddCard = (element) =>{
 
         let components = this.state.change;
-        element = <TimeCard></TimeCard>
-        components.push(element);
-        this.setState({
-            change: components,
-        })
+        if (components.length<2){
+            element = <TimeCard/>
+            components.push(element);
+            this.setState({
+                change: components,
+                addButtonColor: blue[300],
+            })
+        } else {
+            this.setState({
+                addButtonColor: blue[50],
+            })
+        }
     }
 
     render(){
@@ -121,7 +129,7 @@ class Home extends React.Component{
                                                     <IconButton 
                                                         className="card-add-button"
                                                         onClick={this.handleAddCard.bind(this)}>
-                                                        <AddCircleIcon fontSize="large" style={{ color: blue[300] }}/>
+                                                        <AddCircleIcon fontSize="large" style={{ color: this.state.addButtonColor }}/>
                                                     </IconButton>
                                                 </Fragment>
                                             ) : (
